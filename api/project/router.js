@@ -7,7 +7,15 @@ const router = express.Router();
 router.get('/', (req, res, next) => {
 	Projects.getAllProjects()
 		.then(projects => {
-			res.status(200).json(projects);
+			const newProjectArray = projects.map(project => {
+				return {
+					project_id: project.project_id,
+					project_name: project.project_name,
+					project_description: project.project_description,
+					project_completed: project.project_completed ? true : false
+				};
+			});
+			res.status(200).json(newProjectArray);
 		})
 		.catch(next);
 });
