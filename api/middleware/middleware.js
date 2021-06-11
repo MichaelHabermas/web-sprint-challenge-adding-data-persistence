@@ -27,14 +27,22 @@ function validateResource(req, res, next) {
 			status: 400,
 			message: 'Invalid resource name'
 		});
-	} else if (Resource.isResourceNameUnique(resource_name)) {
-		next({
-			status: 400,
-			message: 'Resource name must be unique'
-		});
 	} else {
 		next();
 	}
+}
+
+async function isResourceNameUnique(req, res, next) {
+	const resources = await db('resources');
+	resources.forEach(resource => {
+		if (req.body.resource_name === resource.resource_name) {
+			next({
+				status: 400,
+				message: 'Resource name must be unique'
+			});
+		}
+	});
+	next();
 }
 
 function validateTask(req, res, next) {
@@ -49,4 +57,10 @@ function validateTask(req, res, next) {
 	}
 }
 
-module.exports = { logger, validateResource, validateProject, validateTask };
+module.exports = {
+	logger,
+	validateResource,
+	isResourceNameUnique,
+	validateProject,
+	validateTask
+};
