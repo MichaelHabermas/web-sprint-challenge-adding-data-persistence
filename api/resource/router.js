@@ -10,14 +10,7 @@ const router = express.Router();
 router.get('/', (req, res, next) => {
 	Resources.getAllResources()
 		.then(resources => {
-			const newResourceArray = resources.map(resource => {
-				return {
-					resource_id: resource.resource_id,
-					resource_name: resource.resource_name,
-					resource_description: resource.resource_description
-				};
-			});
-			res.status(200).json(newResourceArray);
+			res.status(200).json(resources);
 		})
 		.catch(next);
 });

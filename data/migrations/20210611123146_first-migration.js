@@ -17,29 +17,29 @@ exports.up = function (knex) {
 			tbl.text('task_notes', 128);
 			tbl.integer('task_completed', 128).notNullable().defaultTo(0);
 			tbl.integer('project_id')
-				.unsigned() // can't do negative
+				.unsigned()
 				.notNullable()
 				.references('project_id')
 				.inTable('projects')
 				.onUpdate('CASCADE')
-				.onDelete('CASCADE'); // or RESTRICT
+				.onDelete('CASCADE');
 		})
 		.createTable('project_resources', tbl => {
 			tbl.increments();
 			tbl.integer('project_id')
-				.unsigned() // can't do negative
+				.unsigned()
 				.notNullable()
 				.references('project_id')
 				.inTable('projects')
 				.onUpdate('CASCADE')
-				.onDelete('CASCADE'); // or RESTRICT
+				.onDelete('CASCADE');
 			tbl.integer('resource_id')
-				.unsigned() // can't do negative
+				.unsigned()
 				.notNullable()
 				.references('resource_id')
 				.inTable('resources')
 				.onUpdate('CASCADE')
-				.onDelete('CASCADE'); // or RESTRICT
+				.onDelete('CASCADE');
 		});
 };
 

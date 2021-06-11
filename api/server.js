@@ -12,7 +12,6 @@ server.use('/api/tasks', taskRouter);
 server.use(logger);
 
 server.use((err, req, res, next) => {
-	console.log();
 	res.status(err.status || 500).json({
 		custom: "something's rotten in the state of Denmark",
 		message: err.message,

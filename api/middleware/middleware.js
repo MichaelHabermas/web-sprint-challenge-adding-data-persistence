@@ -1,6 +1,3 @@
-const Task = require('../task/model');
-const Project = require('../project/model');
-const Resource = require('../resource/model');
 const db = require('../../data/dbConfig');
 
 function logger(req, res, next) {
@@ -46,7 +43,7 @@ async function isResourceNameUnique(req, res, next) {
 }
 
 function validateTask(req, res, next) {
-	const { task_description, project_id } = req.body;
+	const { task_description } = req.body;
 	if (!task_description || typeof task_description !== 'string') {
 		next({
 			status: 400,
