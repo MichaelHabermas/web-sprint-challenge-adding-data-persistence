@@ -7,13 +7,13 @@ function logger(req, res, next) {
 	next();
 }
 
-function validateResource(req, res, next) {
-	console.log('validateResource Working');
+function validateProject(req, res, next) {
+	console.log('validateProject Working');
 	next();
 }
 
-function validateProject(req, res, next) {
-	console.log('validateProject Working');
+function validateResource(req, res, next) {
+	console.log('validateResource Working');
 	next();
 }
 
